@@ -150,9 +150,17 @@ def predict(prompt, style, audio_file_pth, agree):
 
     # note diffusion_conditioning not used on hifigan (default mode), it will be empty but need to pass it to model.inference
     try:
+<<<<<<< HEAD
         target_se, audio_name = se_extractor.get_se(
             sampleWavToBeImitated, tone_color_converter, target_dir="processed", vad=True
         )
+||||||| parent of acd97c0 (Modify to my useage pattern)
+        target_se, audio_name = se_extractor.get_se(speaker_wav, tone_color_converter, target_dir='processed', vad=True)
+=======
+        target_se, audio_name = se_extractor.get_se(
+            speaker_wav, tone_color_converter, target_dir="processed", vad=True
+        )
+>>>>>>> acd97c0 (Modify to my useage pattern)
     except Exception as e:
         text_hint += f"[ERROR] Get target tone color error {str(e)} \n"
         gr.Warning("[ERROR] Get target tone color error {str(e)} \n")
@@ -165,8 +173,32 @@ def predict(prompt, style, audio_file_pth, agree):
     src_path = f"{output_dir}/tmp.wav"
     tts_model.tts(prompt, src_path, speaker=style, language=language)
 
+<<<<<<< HEAD
     save_path = f"{output_dir}/output.wav"
+||||||| parent of acd97c0 (Modify to my useage pattern)
+    save_path = f'{output_dir}/output.wav'
+    # Run the tone color converter
+    encode_message = "@MyShell"
+    tone_color_converter.convert(
+        audio_src_path=src_path, 
+        src_se=source_se, 
+        tgt_se=target_se, 
+        output_path=save_path,
+        message=encode_message)
+=======
+    save_path = f"{output_dir}/output.wav"
+    # Run the tone color converter
+    # encode_message = "@MyShell"
+    tone_color_converter.convert(
+        audio_src_path=src_path,
+        src_se=source_se,
+        tgt_se=target_se,
+        output_path=save_path,
+        # message=encode_message,
+    )
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
+<<<<<<< HEAD
     # Run the tone color converter
     # encode_message = "@MyShell"
     tone_color_converter.convert(
@@ -178,6 +210,11 @@ def predict(prompt, style, audio_file_pth, agree):
     )
 
     text_hint += """Get response successfully \n"""
+||||||| parent of acd97c0 (Modify to my useage pattern)
+    text_hint += f'''Get response successfully \n'''
+=======
+    text_hint += """Get response successfully \n"""
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
     return (
         text_hint,
@@ -192,31 +229,97 @@ def predict(prompt, style, audio_file_pth, agree):
     #     sampleWavToBeImitated,
     # )
 
-
 # title = "MyShell OpenVoice"
 
+<<<<<<< HEAD
+# title = "MyShell OpenVoice"
+||||||| parent of acd97c0 (Modify to my useage pattern)
+title = "MyShell OpenVoice"
+=======
 # description = """
 # We introduce OpenVoice, a versatile instant voice cloning approach that requires only a short audio clip from the reference speaker to replicate their voice and generate speech in multiple languages. OpenVoice enables granular control over voice styles, including emotion, accent, rhythm, pauses, and intonation, in addition to replicating the tone color of the reference speaker. OpenVoice also achieves zero-shot cross-lingual voice cloning for languages not included in the massive-speaker training set.
 # """
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
+<<<<<<< HEAD
+# description = """
+# We introduce OpenVoice, a versatile instant voice cloning approach that requires only a short audio clip from the reference speaker to replicate their voice and generate speech in multiple languages. OpenVoice enables granular control over voice styles, including emotion, accent, rhythm, pauses, and intonation, in addition to replicating the tone color of the reference speaker. OpenVoice also achieves zero-shot cross-lingual voice cloning for languages not included in the massive-speaker training set.
+# """
+||||||| parent of acd97c0 (Modify to my useage pattern)
+description = """
+We introduce OpenVoice, a versatile instant voice cloning approach that requires only a short audio clip from the reference speaker to replicate their voice and generate speech in multiple languages. OpenVoice enables granular control over voice styles, including emotion, accent, rhythm, pauses, and intonation, in addition to replicating the tone color of the reference speaker. OpenVoice also achieves zero-shot cross-lingual voice cloning for languages not included in the massive-speaker training set.
+"""
+=======
 # markdown_table = """
 # <div align="center" style="margin-bottom: 10px;">
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
+<<<<<<< HEAD
+# markdown_table = """
+# <div align="center" style="margin-bottom: 10px;">
+||||||| parent of acd97c0 (Modify to my useage pattern)
+markdown_table = """
+<div align="center" style="margin-bottom: 10px;">
+=======
 # |               |               |               |
 # | :-----------: | :-----------: | :-----------: |
 # | **OpenSource Repo** | **Project Page** | **Join the Community** |
 # | <div style='text-align: center;'><a style="display:inline-block,align:center" href='https://github.com/myshell-ai/OpenVoice'><img src='https://img.shields.io/github/stars/myshell-ai/OpenVoice?style=social' /></a></div> | [OpenVoice](https://research.myshell.ai/open-voice) | [![Discord](https://img.shields.io/discord/1122227993805336617?color=%239B59B6&label=%20Discord%20)](https://discord.gg/myshell) |
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
+<<<<<<< HEAD
+# |               |               |               |
+# | :-----------: | :-----------: | :-----------: |
+# | **OpenSource Repo** | **Project Page** | **Join the Community** |
+# | <div style='text-align: center;'><a style="display:inline-block,align:center" href='https://github.com/myshell-ai/OpenVoice'><img src='https://img.shields.io/github/stars/myshell-ai/OpenVoice?style=social' /></a></div> | [OpenVoice](https://research.myshell.ai/open-voice) | [![Discord](https://img.shields.io/discord/1122227993805336617?color=%239B59B6&label=%20Discord%20)](https://discord.gg/myshell) |
+||||||| parent of acd97c0 (Modify to my useage pattern)
+|               |               |               |
+| :-----------: | :-----------: | :-----------: | 
+| **OpenSource Repo** | **Project Page** | **Join the Community** |        
+| <div style='text-align: center;'><a style="display:inline-block,align:center" href='https://github.com/myshell-ai/OpenVoice'><img src='https://img.shields.io/github/stars/myshell-ai/OpenVoice?style=social' /></a></div> | [OpenVoice](https://research.myshell.ai/open-voice) | [![Discord](https://img.shields.io/discord/1122227993805336617?color=%239B59B6&label=%20Discord%20)](https://discord.gg/myshell) |
+=======
 # </div>
 # """
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
+<<<<<<< HEAD
+# </div>
+# """
+||||||| parent of acd97c0 (Modify to my useage pattern)
+</div>
+"""
+=======
 # markdown_table_v2 = """
 # <div align="center" style="margin-bottom: 2px;">
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
+<<<<<<< HEAD
+# markdown_table_v2 = """
+# <div align="center" style="margin-bottom: 2px;">
+||||||| parent of acd97c0 (Modify to my useage pattern)
+markdown_table_v2 = """
+<div align="center" style="margin-bottom: 2px;">
+=======
 # |               |               |               |              |
 # | :-----------: | :-----------: | :-----------: | :-----------: |
 # | **OpenSource Repo** | <div style='text-align: center;'><a style="display:inline-block,align:center" href='https://github.com/myshell-ai/OpenVoice'><img src='https://img.shields.io/github/stars/myshell-ai/OpenVoice?style=social' /></a></div> |  **Project Page** |  [OpenVoice](https://research.myshell.ai/open-voice) |
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
+<<<<<<< HEAD
+# |               |               |               |              |
+# | :-----------: | :-----------: | :-----------: | :-----------: |
+# | **OpenSource Repo** | <div style='text-align: center;'><a style="display:inline-block,align:center" href='https://github.com/myshell-ai/OpenVoice'><img src='https://img.shields.io/github/stars/myshell-ai/OpenVoice?style=social' /></a></div> |  **Project Page** |  [OpenVoice](https://research.myshell.ai/open-voice) |
+||||||| parent of acd97c0 (Modify to my useage pattern)
+|               |               |               |              |
+| :-----------: | :-----------: | :-----------: | :-----------: | 
+| **OpenSource Repo** | <div style='text-align: center;'><a style="display:inline-block,align:center" href='https://github.com/myshell-ai/OpenVoice'><img src='https://img.shields.io/github/stars/myshell-ai/OpenVoice?style=social' /></a></div> |  **Project Page** |  [OpenVoice](https://research.myshell.ai/open-voice) |     
+=======
+# | | |
+# | :-----------: | :-----------: |
+# **Join the Community** |   [![Discord](https://img.shields.io/discord/1122227993805336617?color=%239B59B6&label=%20Discord%20)](https://discord.gg/myshell) |
+>>>>>>> acd97c0 (Modify to my useage pattern)
+
+<<<<<<< HEAD
 # | | |
 # | :-----------: | :-----------: |
 # **Join the Community** |   [![Discord](https://img.shields.io/discord/1122227993805336617?color=%239B59B6&label=%20Discord%20)](https://discord.gg/myshell) |
@@ -232,6 +335,33 @@ def predict(prompt, style, audio_file_pth, agree):
 # wrapped_markdown_content = (
 #     f"<div style='border: 1px solid #000; padding: 10px;'>{content}</div>"
 # )
+||||||| parent of acd97c0 (Modify to my useage pattern)
+| | |
+| :-----------: | :-----------: |
+**Join the Community** |   [![Discord](https://img.shields.io/discord/1122227993805336617?color=%239B59B6&label=%20Discord%20)](https://discord.gg/myshell) |
+
+</div>
+"""
+content = """
+<div>
+  <strong>If the generated voice does not sound like the reference voice, please refer to <a href='https://github.com/myshell-ai/OpenVoice/blob/main/QA.md'>this QnA</a>.</strong> <strong>For multi-lingual & cross-lingual examples, please refer to <a href='https://github.com/myshell-ai/OpenVoice/blob/main/demo_part2.ipynb'>this jupyter notebook</a>.</strong>
+  This online demo mainly supports <strong>English</strong>. The <em>default</em> style also supports <strong>Chinese</strong>. But OpenVoice can adapt to any other language as long as a base speaker is provided.
+</div>
+"""
+wrapped_markdown_content = f"<div style='border: 1px solid #000; padding: 10px;'>{content}</div>"
+=======
+# </div>
+# """
+# content = """
+# <div>
+#   <strong>If the generated voice does not sound like the reference voice, please refer to <a href='https://github.com/myshell-ai/OpenVoice/blob/main/QA.md'>this QnA</a>.</strong> <strong>For multi-lingual & cross-lingual examples, please refer to <a href='https://github.com/myshell-ai/OpenVoice/blob/main/demo_part2.ipynb'>this jupyter notebook</a>.</strong>
+#   This online demo mainly supports <strong>English</strong>. The <em>default</em> style also supports <strong>Chinese</strong>. But OpenVoice can adapt to any other language as long as a base speaker is provided.
+# </div>
+# """
+# wrapped_markdown_content = (
+#     f"<div style='border: 1px solid #000; padding: 10px;'>{content}</div>"
+# )
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
 
 examples = [
@@ -303,6 +433,7 @@ with gr.Blocks(analytics_enabled=False) as demo:
                 label="Reference Audio",
                 info="Click on the ✎ button to upload your own target speaker audio",
                 type="filepath",
+<<<<<<< HEAD
                 value="resources/dada.wav",
             )
             # tos_gr = gr.Checkbox(
@@ -310,6 +441,23 @@ with gr.Blocks(analytics_enabled=False) as demo:
             #     value=False,
             #     info="I agree to the terms of the cc-by-nc-4.0 license-: https://github.com/myshell-ai/OpenVoice/blob/main/LICENSE",
             # )
+||||||| parent of acd97c0 (Modify to my useage pattern)
+                value="resources/demo_speaker2.mp3",
+            )
+            tos_gr = gr.Checkbox(
+                label="Agree",
+                value=False,
+                info="I agree to the terms of the cc-by-nc-4.0 license-: https://github.com/myshell-ai/OpenVoice/blob/main/LICENSE",
+            )
+=======
+                value="resources/demo_speaker2.mp3",
+            )
+            # tos_gr = gr.Checkbox(
+            #     label="Agree",
+            #     value=False,
+            #     info="I agree to the terms of the cc-by-nc-4.0 license-: https://github.com/myshell-ai/OpenVoice/blob/main/LICENSE",
+            # )
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
             tts_button = gr.Button("Send", elem_id="send-btn", visible=True)
 
@@ -318,6 +466,7 @@ with gr.Blocks(analytics_enabled=False) as demo:
             audio_gr = gr.Audio(label="Synthesised Audio", autoplay=True)
             ref_audio_gr = gr.Audio(label="Reference Audio Used")
 
+<<<<<<< HEAD
             # gr.Examples(
             #     examples,
             #     label="Examples",
@@ -331,6 +480,29 @@ with gr.Blocks(analytics_enabled=False) as demo:
                 [input_text_gr, style_gr, ref_gr],  # dada.wav
                 outputs=[out_text_gr, audio_gr, ref_audio_gr],
             )
+||||||| parent of acd97c0 (Modify to my useage pattern)
+            gr.Examples(examples,
+                        label="Examples",
+                        inputs=[input_text_gr, style_gr, ref_gr, tos_gr],
+                        outputs=[out_text_gr, audio_gr, ref_audio_gr],
+                        fn=predict,
+                        cache_examples=False,)
+            tts_button.click(predict, [input_text_gr, style_gr, ref_gr, tos_gr], outputs=[out_text_gr, audio_gr, ref_audio_gr])
+=======
+            # gr.Examples(
+            #     examples,
+            #     label="Examples",
+            #     inputs=[input_text_gr, style_gr, ref_gr],
+            #     outputs=[out_text_gr, audio_gr, ref_audio_gr],
+            #     fn=predict,
+            #     cache_examples=False,
+            # )
+            tts_button.click(
+                predict,
+                [input_text_gr, style_gr, ref_gr],
+                outputs=[out_text_gr, audio_gr, ref_audio_gr],
+            )
+>>>>>>> acd97c0 (Modify to my useage pattern)
 
 demo.queue()
 demo.launch(debug=True, show_api=True, share=args.share)
