@@ -125,7 +125,7 @@ def predict(prompt, style, audio_file_pth, agree):
                 None,
             )
 
-    speaker_wav = audio_file_pth
+    sampleWavToBeImitated = audio_file_pth
 
     if len(prompt) < 2:
         text_hint += "[ERROR] Please give a longer prompt text \n"
@@ -151,7 +151,7 @@ def predict(prompt, style, audio_file_pth, agree):
     # note diffusion_conditioning not used on hifigan (default mode), it will be empty but need to pass it to model.inference
     try:
         target_se, audio_name = se_extractor.get_se(
-            speaker_wav, tone_color_converter, target_dir="processed", vad=True
+            sampleWavToBeImitated, tone_color_converter, target_dir="processed", vad=True
         )
     except Exception as e:
         text_hint += f"[ERROR] Get target tone color error {str(e)} \n"
@@ -166,6 +166,7 @@ def predict(prompt, style, audio_file_pth, agree):
     tts_model.tts(prompt, src_path, speaker=style, language=language)
 
     save_path = f"{output_dir}/output.wav"
+
     # Run the tone color converter
     # encode_message = "@MyShell"
     tone_color_converter.convert(
@@ -181,8 +182,15 @@ def predict(prompt, style, audio_file_pth, agree):
     return (
         text_hint,
         save_path,
-        speaker_wav,
+        sampleWavToBeImitated,
     )
+
+    # Skip toning shit
+    # return (
+    #     text_hint,
+    #     src_path,
+    #     sampleWavToBeImitated,
+    # )
 
 
 # title = "MyShell OpenVoice"
@@ -295,7 +303,7 @@ with gr.Blocks(analytics_enabled=False) as demo:
                 label="Reference Audio",
                 info="Click on the ✎ button to upload your own target speaker audio",
                 type="filepath",
-                value="resources/demo_speaker2.mp3",
+                value="resources/dada.wav",
             )
             # tos_gr = gr.Checkbox(
             #     label="Agree",
@@ -320,7 +328,7 @@ with gr.Blocks(analytics_enabled=False) as demo:
             # )
             tts_button.click(
                 predict,
-                [input_text_gr, style_gr, ref_gr],
+                [input_text_gr, style_gr, ref_gr],  # dada.wav
                 outputs=[out_text_gr, audio_gr, ref_audio_gr],
             )
 
